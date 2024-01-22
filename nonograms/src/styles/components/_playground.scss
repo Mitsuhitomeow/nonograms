@@ -8,12 +8,21 @@
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width:610px) {
+    width: 20px;
+  }
 }
 
 .column {
+  height: 30px;
+
   cursor: pointer;
   border: 1px solid black;
-  height: 30px;
+
+  @media screen and (max-width:610px) {
+    height: 20px;
+  }
 }
 
 .black {
@@ -23,10 +32,14 @@
 .hint {
   height: 30px;
   border: 1px solid;
+
+  @media screen and (max-width:610px) {
+    height: 20px;
+  }
 }
 
 .hint__top {
-  height: 100px;
+  height: 60px;
 }
 
 .hint__background {
@@ -34,8 +47,9 @@
 }
 
 .first__row {
-  width: 100px;
+  width: 60px;
 }
+
 // * {
 //   border: 1px solid red;
 // }
