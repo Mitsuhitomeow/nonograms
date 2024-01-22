@@ -1,8 +1,8 @@
 import CreatePlayground from './classCreatePlayground';
 
 export default class CreateOptions {
-  constructor() {
-    this.ground = new CreatePlayground(5);
+  constructor(time) {
+    this.ground = new CreatePlayground(5, time);
     this.value = 5;
     [this.section, this.sizeControl, this.main] = [
       document.createElement('section'),
@@ -14,10 +14,12 @@ export default class CreateOptions {
   }
 
   initGroundSize() {
-    const container = document.createElement('div');
-    const optionEasy = document.createElement('option');
-    const optionMedium = document.createElement('option');
-    const optionHard = document.createElement('option');
+    const [container, optionEasy, optionMedium, optionHard] = [
+      document.createElement('div'),
+      document.createElement('option'),
+      document.createElement('option'),
+      document.createElement('option'),
+    ];
 
     this.section.appendChild(container);
     container.appendChild(this.sizeControl);

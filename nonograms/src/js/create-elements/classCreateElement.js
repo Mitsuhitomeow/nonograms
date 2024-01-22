@@ -1,3 +1,4 @@
+import Stopwatch from '../create-functions/classCreateStopwatch';
 import CreateOptions from './classCreateOptions';
 
 export default class CreateElement {
@@ -34,14 +35,24 @@ export default class CreateElement {
   initMain() {
     this.main = document.createElement('main');
     const container = document.createElement('div');
+    const timeSection = document.createElement('div');
+    const timeTick = document.createElement('span');
 
-    const options = new CreateOptions();
+    const time = new Stopwatch();
+    setInterval(() => {
+      timeTick.innerHTML = '';
+      timeTick.textContent = time.getTime();
+    }, 1000);
+
+    const options = new CreateOptions(time);
 
     this.main.className = `main`;
     container.className = `main__container container`;
 
     this.main.append(container);
     container.append(options.getElement());
+    container.append(timeSection);
+    timeSection.append(timeTick);
 
     this.components.push(this.main);
   }
