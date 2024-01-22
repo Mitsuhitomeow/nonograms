@@ -1,0 +1,29 @@
+.main__section-playground {
+  display: flex;
+  justify-content: center;
+
+
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.row {
+  width: 100px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.column {
+  border: 1px solid black;
+  height: 100px;
+}
+
+.black {
+  background-color: black;
+}
+
+
+// * {
+//   border: 1px solid red;
+// }

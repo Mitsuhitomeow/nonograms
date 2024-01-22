@@ -1,11 +1,15 @@
+import CreatePlayground from './classCreatePlayground';
+
 export default class CreateElement {
   constructor() {
     this.header = null;
     this.footer = null;
+    this.main = null;
 
     this.components = [];
 
     this.initHeader();
+    this.initMain();
     this.initFooter();
   }
 
@@ -27,15 +31,29 @@ export default class CreateElement {
     this.components.push(this.header);
   }
 
+  initMain() {
+    this.main = document.createElement('main');
+    const container = document.createElement('div');
+    const ground = new CreatePlayground(5);
+
+    this.main.className = `main`;
+    container.className = `main__container container`;
+
+    this.main.append(container);
+    container.append(ground.getElement());
+
+    this.components.push(this.main);
+  }
+
   initFooter() {
-    this.footer = document.createElement('header');
+    this.footer = document.createElement('footer');
 
     const div = document.createElement('div');
     const title = document.createElement('h1');
 
     title.textContent = '© RS School Production 2024';
 
-    this.header.className = `footer`;
+    this.footer.className = `footer`;
     div.className = `footer__container container`;
     title.className = `footer__title title`;
 

@@ -1,3 +1,6 @@
+// VARIABLES
+@import './abstracts/variables';
+
 // BASE
 @import './base/start';
 @import './base/normalize';
@@ -5,3 +8,7 @@
 // LAYOUT
 @import './layout/header';
 @import './layout/footer';
+@import './layout/main';
+
+// COMPONENTS
+@import './components/playground';
