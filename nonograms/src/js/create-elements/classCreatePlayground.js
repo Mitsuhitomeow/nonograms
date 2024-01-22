@@ -15,7 +15,6 @@ export default class CreatePlayground {
 
   initPlayground(size) {
     this.ground.innerHTML = '';
-
     this.ground.className = `main__section-playground`;
 
     for (let i = 0; i < size + 1; i += 1) {
@@ -32,8 +31,12 @@ export default class CreatePlayground {
         row.append(column);
         column.className = `column`;
 
+        if (i === 0) {
+          column.className = `hint hint__left hint__background`;
+        }
+
         if (j === 0) {
-          column.className = `first__column`;
+          column.className = `hint hint__top hint__background`;
         }
 
         this.columns.push(column);
@@ -43,9 +46,11 @@ export default class CreatePlayground {
 
   addClick() {
     this.columns.forEach((column) => {
-      column.addEventListener('click', () => {
-        column.classList.toggle('black');
-      });
+      if (column.classList.contains('column')) {
+        column.addEventListener('click', () => {
+          column.classList.toggle('black');
+        });
+      }
     });
   }
 

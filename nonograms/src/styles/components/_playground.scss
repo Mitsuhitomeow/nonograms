@@ -1,29 +1,41 @@
 .main__section-playground {
   display: flex;
   justify-content: center;
-
-
-  max-width: 600px;
-  max-height: 600px;
 }
 
 .row {
-  width: 100px;
+  width: 30px;
 
   display: flex;
   flex-direction: column;
 }
 
 .column {
+  cursor: pointer;
   border: 1px solid black;
-  height: 100px;
+  height: 30px;
 }
 
 .black {
   background-color: black;
 }
 
+.hint {
+  height: 30px;
+  border: 1px solid;
+}
 
+.hint__top {
+  height: 100px;
+}
+
+.hint__background {
+  background-color: rgb(185, 180, 174);
+}
+
+.first__row {
+  width: 100px;
+}
 // * {
 //   border: 1px solid red;
 // }
