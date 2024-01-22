@@ -1,15 +1,21 @@
 export default class CreatePlayground {
-  constructor() {
-    this.ground = null;
+  constructor(size) {
+    this.ground = document.createElement('section');
     this.columns = [];
     this.matrix = [];
 
-    this.initPlayground(15);
+    this.initPlayground(size);
+    this.addClick();
+  }
+
+  updatePlayground(size) {
+    this.initPlayground(size);
     this.addClick();
   }
 
   initPlayground(size) {
-    this.ground = document.createElement('section');
+    this.ground.innerHTML = '';
+
     this.ground.className = `main__section-playground`;
 
     for (let i = 0; i < size + 1; i += 1) {
@@ -17,10 +23,18 @@ export default class CreatePlayground {
       this.ground.append(row);
       row.className = `row`;
 
+      if (i === 0) {
+        row.className = `first__row`;
+      }
+
       for (let j = 0; j < size + 1; j += 1) {
         const column = document.createElement('div');
         row.append(column);
         column.className = `column`;
+
+        if (j === 0) {
+          column.className = `first__column`;
+        }
 
         this.columns.push(column);
       }

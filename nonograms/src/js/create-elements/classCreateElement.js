@@ -1,4 +1,4 @@
-import CreatePlayground from './classCreatePlayground';
+import CreateOptions from './classCreateOptions';
 
 export default class CreateElement {
   constructor() {
@@ -34,13 +34,14 @@ export default class CreateElement {
   initMain() {
     this.main = document.createElement('main');
     const container = document.createElement('div');
-    const ground = new CreatePlayground(5);
+
+    const options = new CreateOptions();
 
     this.main.className = `main`;
     container.className = `main__container container`;
 
     this.main.append(container);
-    container.append(ground.getElement());
+    container.append(options.getElement());
 
     this.components.push(this.main);
   }
