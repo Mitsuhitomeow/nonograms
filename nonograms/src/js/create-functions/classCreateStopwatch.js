@@ -8,6 +8,7 @@ export default class Stopwatch {
   }
 
   start() {
+    this.time = `${Stopwatch.formatTime(this.hour)}:${Stopwatch.formatTime(this.minute)}:${Stopwatch.formatTime(this.second)}`;
     this.running = true;
     setInterval(() => {
       this.tick();
