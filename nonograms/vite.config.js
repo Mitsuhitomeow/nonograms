@@ -7,8 +7,9 @@ export default defineConfig({
     outDir: '../dist',
     sourcemap: true,
   },
+  emptyOutDir: true,
   server: {
     host: true,
   },
-  base: '/mitsuhitomeow-JSFE2023Q4/',
+  base: '/mitsuhitomeow-JSFE2023Q4/nonograms/',
 });

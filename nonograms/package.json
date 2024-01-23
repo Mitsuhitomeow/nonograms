@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "node node_modules/eslint/bin/eslint.js ./src",
     "lint:fix": "node node_modules/eslint/bin/eslint.js ./src --fix",
-    "deploy": "vite build && gh-pages -d dist -e nonograms"
+    "deploy": "vite build --emptyOutDir && gh-pages -d dist -e nonograms"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
