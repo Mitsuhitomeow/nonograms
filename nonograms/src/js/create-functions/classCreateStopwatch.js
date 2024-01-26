@@ -3,16 +3,32 @@ export default class Stopwatch {
     this.second = 0;
     this.minute = 0;
     this.hour = 0;
-    this.time = '';
+    this.time = '00:00:00';
     this.running = false;
+    this.intervalId = null;
   }
 
   start() {
     this.time = `${Stopwatch.formatTime(this.hour)}:${Stopwatch.formatTime(this.minute)}:${Stopwatch.formatTime(this.second)}`;
     this.running = true;
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.tick();
     }, 1000);
+  }
+
+  pause() {
+    if (this.intervalId !== null) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+      this.running = false;
+    }
+  }
+
+  restart() {
+    this.second = 0;
+    this.minute = 0;
+    this.hour = 0;
+    this.time = '00:00:00';
   }
 
   tick() {

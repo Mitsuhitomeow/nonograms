@@ -1,7 +1,6 @@
 import CreatePlayground from './classCreatePlayground';
 import nonograms from '../../nongrams-db.json';
-import initGame from '../game-process/initGame';
-import clearHint from '../game-process/clearHint';
+import { initGame, resetGame } from '../game-process/initGame';
 
 export default class CreateOptions {
   constructor(time) {
@@ -89,7 +88,7 @@ export default class CreateOptions {
 
       // условие для селекта со значением '---'
       if (value === '---') {
-        clearHint();
+        resetGame(this.time);
         return;
       }
 
@@ -99,7 +98,7 @@ export default class CreateOptions {
       );
       this.matrixPicture = foundImage.pixels;
 
-      clearHint();
+      resetGame(this.time);
       initGame(this.matrixPicture, this.time);
     };
 
