@@ -33,11 +33,15 @@ export default class CreatePlayground {
         column.className = `column`;
 
         if (i === 0) {
-          column.className = `hint hint__left hint__background`;
+          column.className = `hint hint__top hint__background`;
         }
 
         if (j === 0) {
-          column.className = `hint hint__top hint__background`;
+          column.className = `hint hint__left hint__background`;
+        }
+
+        if (i === 0 && j === 0) {
+          column.className = `zero hint__background`;
         }
 
         this.columns.push(column);

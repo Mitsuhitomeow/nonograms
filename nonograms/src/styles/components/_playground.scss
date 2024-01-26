@@ -24,7 +24,8 @@
   background-color: black;
 }
 
-.hint {
+.hint,
+.zero {
   width: 30px;
   border: 1px solid;
 
@@ -33,7 +34,8 @@
   }
 }
 
-.hint__top {
+.hint__left,
+.zero {
   width: 60px;
 }
 
@@ -45,6 +47,7 @@
   height: 60px;
   display: flex;
 }
+
 
 // * {
 //   border: 1px solid red;
