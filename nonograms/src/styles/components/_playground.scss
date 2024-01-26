@@ -1,27 +1,22 @@
-.main__section-playground {
-  display: flex;
-  justify-content: center;
-}
-
 .row {
-  width: 30px;
+  height: 30px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   @media screen and (max-width:610px) {
-    width: 20px;
+    height: 20px;
   }
 }
 
 .column {
-  height: 30px;
+  width: 30px;
 
   cursor: pointer;
   border: 1px solid black;
 
   @media screen and (max-width:610px) {
-    height: 20px;
+    width: 20px;
   }
 }
 
@@ -30,16 +25,16 @@
 }
 
 .hint {
-  height: 30px;
+  width: 30px;
   border: 1px solid;
 
   @media screen and (max-width:610px) {
-    height: 20px;
+    width: 20px;
   }
 }
 
 .hint__top {
-  height: 60px;
+  width: 60px;
 }
 
 .hint__background {
@@ -47,7 +42,8 @@
 }
 
 .first__row {
-  width: 60px;
+  height: 60px;
+  display: flex;
 }
 
 // * {
