@@ -26,12 +26,8 @@
 
 .hint,
 .zero {
-  width: 30px;
   border: 1px solid;
 
-  @media screen and (max-width:610px) {
-    width: 20px;
-  }
 }
 
 .hint__left,
@@ -44,11 +40,33 @@
 }
 
 .first__row {
-  height: 60px;
+  min-height: 60px;
   display: flex;
 }
 
+.hint__top {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
 
+  width: 30px;
+
+  span {
+    line-height: 1;
+  }
+
+  @media screen and (max-width:610px) {
+    width: 20px;
+  }
+}
+
+
+.hint__left {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
 // * {
 //   border: 1px solid red;
 // }
