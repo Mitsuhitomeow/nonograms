@@ -4,6 +4,7 @@ import initGame from '../game-process/initGame';
 
 export default class CreateOptions {
   constructor(time) {
+    this.time = time;
     this.ground = new CreatePlayground(5, time);
     this.value = 5;
     this.size = this.value;
@@ -92,7 +93,7 @@ export default class CreateOptions {
       );
       this.matrixPicture = foundImage.pixels;
 
-      initGame(this.matrixPicture);
+      initGame(this.matrixPicture, this.time);
     };
 
     /**
