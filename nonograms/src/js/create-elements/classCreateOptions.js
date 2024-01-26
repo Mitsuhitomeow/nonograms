@@ -1,6 +1,7 @@
 import CreatePlayground from './classCreatePlayground';
 import nonograms from '../../nongrams-db.json';
 import initGame from '../game-process/initGame';
+import clearHint from '../game-process/clearHint';
 
 export default class CreateOptions {
   constructor(time) {
@@ -86,13 +87,19 @@ export default class CreateOptions {
     this.handleChange = () => {
       const { value } = this.imageSection;
 
-      if (value === '---') return;
+      // условие для селекта со значением '---'
+      if (value === '---') {
+        clearHint();
+        return;
+      }
 
+      // код который действует, если выбрать кроме '---'
       const foundImage = this.arrayPictures.find(
         (image) => image.name === value
       );
       this.matrixPicture = foundImage.pixels;
 
+      clearHint();
       initGame(this.matrixPicture, this.time);
     };
 

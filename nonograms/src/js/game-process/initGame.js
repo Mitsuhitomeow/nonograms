@@ -1,7 +1,11 @@
+import calcSequenceForHint from './calcHint';
+
 export default function initGame(data, time) {
   const squares = document.querySelectorAll('.column');
   const matrixPicture = data;
   const matrix = [];
+
+  console.log(matrixPicture);
 
   squares.forEach(() => matrix.push(0));
 
@@ -24,5 +28,5 @@ export default function initGame(data, time) {
     });
   });
 
-  console.log(matrixPicture.flat());
+  calcSequenceForHint(matrixPicture);
 }
