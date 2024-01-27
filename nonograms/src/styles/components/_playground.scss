@@ -22,7 +22,20 @@
 
 .black {
   background-color: black;
-  border: 0;
+}
+
+.cross {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 25px;
+
+    @media screen and (max-width:610px) {
+      width: 15px;
+    }
+  }
 }
 
 .hint,
@@ -72,23 +85,6 @@
   }
 }
 
-.row:nth-child(n+6):nth-child(5n+2) .column,
-.row:nth-child(n+6):nth-child(5n+2) .hint__left {
-  border-top: 3px solid rgb(105, 105, 105);
-}
-
-.row:nth-child(n+6):nth-child(5n+2) .column.black {
-  border-top: none;
-}
-
-.column:not(.black):nth-child(n+6):nth-child(5n+2) {
-  border-left: 3px solid rgb(105, 105, 105);
-}
-
-.hint__top:nth-child(n+6):nth-child(5n+2) {
-  border-left: 3px solid rgb(105, 105, 105);
-}
-
 .hint__left {
   display: flex;
   justify-content: end;
@@ -104,6 +100,34 @@
       letter-spacing: -3px;
       margin: 2px;
     }
+  }
+}
+
+.row:nth-child(n+6):nth-child(5n+2) .column,
+.row:nth-child(n+6):nth-child(5n+2) .hint__left {
+  border-top: 4px solid rgb(105, 105, 105);
+  margin-top: -2px;
+}
+
+.column:nth-child(n+6):nth-child(5n+2) {
+  border-left: 4px solid rgb(105, 105, 105);
+  margin-left: -2px;
+
+  width: 32px;
+
+  @media screen and (max-width:610px) {
+    width: 21px;
+  }
+}
+
+.hint__top:nth-child(n+6):nth-child(5n+2) {
+  border-left: 4px solid rgb(105, 105, 105);
+  margin-left: -2px;
+
+  width: 32px;
+
+  @media screen and (max-width:610px) {
+    width: 21px;
   }
 }
 
