@@ -42,6 +42,7 @@ export function resetGame(time) {
     const square = elem;
 
     square.classList.remove('black');
+    square.classList.remove('cross');
     square.innerHTML = '';
   });
 

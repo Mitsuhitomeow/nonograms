@@ -27,7 +27,6 @@
 .hint,
 .zero {
   border: 1px solid;
-
 }
 
 .hint__left,
@@ -54,6 +53,7 @@
 
   span {
     line-height: 1;
+    font-weight: bold;
   }
 
   @media screen and (max-width:610px) {
@@ -66,6 +66,11 @@
   display: flex;
   justify-content: end;
   align-items: center;
+
+  span {
+    line-height: 1;
+    font-weight: bold;
+  }
 }
 // * {
 //   border: 1px solid red;
