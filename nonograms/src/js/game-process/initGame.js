@@ -1,5 +1,6 @@
 import calcSequenceForHint from './calcHint';
 import clearHint from './clearHint';
+import { setResults } from './initLocalstorage';
 
 let matrix;
 let newMatrix;
@@ -26,9 +27,11 @@ export function initGame(data, time) {
       const isEqual = newMatrix.every((item, ind) => item === data.flat()[ind]);
 
       if (isEqual) {
-        time.pause();
         const solutionTime = time.getTime();
+
+        time.pause();
         alert(`Массивы идентичны!, Время: ${solutionTime}`);
+        setResults(time);
       }
       console.log(matrix);
     });
@@ -70,4 +73,14 @@ export function resetGround(time) {
 
   time.pause();
   time.restart();
+}
+
+export function saveGame() {
+  console.log('save: ', matrix);
+
+  if (matrix) {
+    localStorage.setItem('saveGame', JSON.stringify(matrix));
+  }
+
+  // todo: Допилить сохранение матрицы картинки...
 }

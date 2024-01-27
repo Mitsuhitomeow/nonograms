@@ -1,4 +1,5 @@
-import { resetGround } from '../game-process/initGame';
+import { resetGround, saveGame } from '../game-process/initGame';
+import { continueGame, getResults } from '../game-process/initLocalstorage';
 
 export default function createButtons(block, time) {
   const sectionButtons = block;
@@ -36,6 +37,10 @@ export default function createButtons(block, time) {
   });
 
   resetBtn.addEventListener('click', () => resetGround(time));
+  saveBtn.addEventListener('click', saveGame);
+  continueBtn.addEventListener('click', continueGame);
+  resultBtn.addEventListener('click', getResults);
+
   block.appendChild(buttonsBlock);
 
   sectionButtons.className = 'main__section-buttons';
@@ -47,9 +52,16 @@ export default function createButtons(block, time) {
   solutionBtn.textContent = 'Solution';
   randomBtn.textContent = 'Random Game';
 
+  // ---------------------------------------
+  /** todo: Добавить функционал кнопкам.   *
+   * Кнопки без функционала, заблокированы,*
+   * выводят только сообщение в консоль.   *
+   * ------------------------------------- *
+   */
   saveBtn.disabled = true;
   continueBtn.disabled = true;
   resultBtn.disabled = true;
   solutionBtn.disabled = true;
   randomBtn.disabled = true;
+  /* ------------------------------------- */
 }
