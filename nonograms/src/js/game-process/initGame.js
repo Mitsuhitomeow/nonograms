@@ -2,6 +2,7 @@ import calcSequenceForHint from './calcHint';
 import clearHint from './clearHint';
 
 let matrix;
+let newMatrix;
 
 export function initGame(data, time) {
   const squares = document.querySelectorAll('.column');
@@ -10,7 +11,7 @@ export function initGame(data, time) {
 
   squares.forEach(() => matrix.push(0));
 
-  const newMatrix = matrix;
+  newMatrix = matrix;
 
   squares.forEach((square, index) => {
     square.addEventListener('click', () => {
@@ -25,9 +26,11 @@ export function initGame(data, time) {
       const isEqual = newMatrix.every((item, ind) => item === data.flat()[ind]);
 
       if (isEqual) {
+        time.pause();
         const solutionTime = time.getTime();
         alert(`Массивы идентичны!, Время: ${solutionTime}`);
       }
+      console.log(matrix);
     });
   });
 
@@ -35,12 +38,13 @@ export function initGame(data, time) {
 }
 
 export function resetGame(time) {
-  matrix = [];
   const squares = document.querySelectorAll('.column');
+  matrix = [];
+  squares.forEach(() => matrix.push(0));
+  newMatrix = matrix;
 
   squares.forEach((elem) => {
     const square = elem;
-
     square.classList.remove('black');
     square.classList.remove('cross');
     square.innerHTML = '';
@@ -49,4 +53,21 @@ export function resetGame(time) {
   time.pause();
   time.restart();
   clearHint();
+}
+
+export function resetGround(time) {
+  matrix = [];
+  const squares = document.querySelectorAll('.column');
+  squares.forEach(() => matrix.push(0));
+  newMatrix = matrix;
+
+  squares.forEach((elem) => {
+    const square = elem;
+    square.classList.remove('black');
+    square.classList.remove('cross');
+    square.innerHTML = '';
+  });
+
+  time.pause();
+  time.restart();
 }

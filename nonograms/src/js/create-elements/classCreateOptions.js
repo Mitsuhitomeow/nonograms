@@ -126,7 +126,7 @@ export default class CreateOptions {
   }
 
   initButtonsSection() {
-    createButtons(this.sectionButton);
+    createButtons(this.sectionButton, this.time);
   }
 
   getElementsButton() {

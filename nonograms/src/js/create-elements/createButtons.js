@@ -1,4 +1,6 @@
-export default function createButtons(Block) {
+import { resetGround } from '../game-process/initGame';
+
+export default function createButtons(Block, time) {
   const [buttonsBlock, resetBtn, saveBtn, continueBtn, resultBtn] = [
     document.createElement('div'),
     document.createElement('button'),
@@ -7,8 +9,15 @@ export default function createButtons(Block) {
     document.createElement('button'),
   ];
 
-  const arrayBtn = [buttonsBlock, resetBtn, saveBtn, continueBtn, resultBtn];
-  arrayBtn.forEach((btn) => btn.classList.add('btn'));
+  const arrayBtn = [resetBtn, saveBtn, continueBtn, resultBtn];
+
+  arrayBtn.forEach((btn) => {
+    btn.classList.add('btn');
+    buttonsBlock.appendChild(btn);
+  });
+
+  resetBtn.addEventListener('click', () => resetGround(time));
+  Block.appendChild(buttonsBlock);
 
   buttonsBlock.className = 'main__Block-buttons';
   resetBtn.textContent = 'Reset';
@@ -16,9 +25,7 @@ export default function createButtons(Block) {
   continueBtn.textContent = 'Continue';
   resultBtn.textContent = 'Results';
 
-  Block.appendChild(buttonsBlock);
-  buttonsBlock.appendChild(resetBtn);
-  buttonsBlock.appendChild(saveBtn);
-  buttonsBlock.appendChild(continueBtn);
-  buttonsBlock.appendChild(resultBtn);
+  saveBtn.disabled = true;
+  continueBtn.disabled = true;
+  resultBtn.disabled = true;
 }
