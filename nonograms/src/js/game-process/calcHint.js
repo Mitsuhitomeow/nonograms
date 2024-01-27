@@ -21,6 +21,13 @@ export default function calcSequenceForHint(matrix) {
       .filter((length) => length !== 0)
   );
 
+  // Добавляю нули, если в строке нет элементов
+  leftToRight.forEach((hints) => {
+    if (hints.length === 0) {
+      hints.push(0);
+    }
+  });
+
   // Считаю подсказки верху вниз
   const topToBottom = Array.from({ length: cols }, () => []);
   for (let col = 0; col < cols; col += 1) {
@@ -36,6 +43,11 @@ export default function calcSequenceForHint(matrix) {
 
     if (count !== 0) {
       topToBottom[col].push(count);
+    }
+
+    // Добавляю нули, если в столбце нет элементов
+    if (topToBottom[col].length === 0) {
+      topToBottom[col].push(0);
     }
   }
 

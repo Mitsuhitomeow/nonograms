@@ -16,7 +16,4 @@ export default function createHint(leftHint, topHint) {
 
   iteratingHint(leftHintElements, leftHint);
   iteratingHint(topHintElements, topHint);
-
-  // console.log(leftHintElements, topHintElements);
-  // console.log(leftHint, topHint);
 }
