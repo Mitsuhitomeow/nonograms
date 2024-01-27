@@ -1,6 +1,7 @@
 import CreatePlayground from './classCreatePlayground';
 import nonograms from '../../nongrams-db.json';
 import { initGame, resetGame } from '../game-process/initGame';
+import createButtons from './createButtons';
 
 export default class CreateOptions {
   constructor(time) {
@@ -10,7 +11,15 @@ export default class CreateOptions {
     this.size = this.value;
     this.arrayPictures = nonograms.images;
     this.matrixPicture = this.arrayPictures[this.size][0].pixels;
-    [this.section, this.sizeControl, this.imageSection, this.container] = [
+
+    [
+      this.section,
+      this.sectionButton,
+      this.sizeControl,
+      this.imageSection,
+      this.container,
+    ] = [
+      document.createElement('section'),
       document.createElement('section'),
       document.createElement('select'),
       document.createElement('select'),
@@ -18,6 +27,7 @@ export default class CreateOptions {
     ];
 
     this.initGroundSize();
+    this.initButtonsSection();
     this.initImageSelection(this.value);
   }
 
@@ -82,16 +92,13 @@ export default class CreateOptions {
      *
      *  При выборе опшены, выводит матрицу картинки.
      */
-
     this.handleChange = () => {
       const { value } = this.imageSection;
-
       // условие для селекта со значением '---'
       if (value === '---') {
         resetGame(this.time);
         return;
       }
-
       // код который действует, если выбрать кроме '---'
       const foundImage = this.arrayPictures.find(
         (image) => image.name === value
@@ -116,6 +123,14 @@ export default class CreateOptions {
       option.textContent = element.name;
       option.setAttribute('value', `${element.name}`);
     });
+  }
+
+  initButtonsSection() {
+    createButtons(this.sectionButton);
+  }
+
+  getElementsButton() {
+    return this.sectionButton;
   }
 
   getMatrixPicture() {
