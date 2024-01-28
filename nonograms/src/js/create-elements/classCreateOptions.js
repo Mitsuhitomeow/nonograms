@@ -60,62 +60,41 @@ export default class CreateOptions {
     /* Событие, которое отслеживает опшены у селект.
      *
      *  При выборе размера поля:
-     *   1. Рендерит таблицу полей.
+     *   1. Стирает текущую и рендерит новую таблицу полей с подсказками.
      *   2. Изменяет у другого селекта, меню картинок, под нужное поле.
      */
+
     this.sizeControl.addEventListener('change', () => {
       this.size = +this.sizeControl.value;
       this.initImageSelection(this.size);
       this.ground.updatePlayground(this.size);
-      console.log('-------');
+
+      this.handleChanged();
     });
 
-    this.section.appendChild(this.ground.getElement());
+    this.initGameOnStartAsync();
   }
 
   initImageSelection(size) {
-    const notOption = document.createElement('option');
     this.arrayPictures = nonograms.images[size];
 
     this.imageSection.innerHTML = '';
     this.imageSection.className = 'image__section';
-    notOption.textContent = '---';
 
-    this.imageSection.appendChild(notOption);
     this.container.appendChild(this.imageSection);
 
+    // делаю копию узла, что бы сбросить состояние.
     const newImageSection = this.imageSection.cloneNode(true);
     this.container.replaceChild(newImageSection, this.imageSection);
     this.imageSection = newImageSection;
 
     /* Событие, которое отслеживает опшены у селект.
-     *
-     *  При выборе опшены, выводит матрицу картинки.
+     *  - При выборе опшены, выводит матрицу картинки.
+     *  - Перезаписываю событие, избавляюсь от постоянно увеличивающегося вывода
      */
-    this.handleChange = () => {
-      const { value } = this.imageSection;
-      // условие для селекта со значением '---'
-      if (value === '---') {
-        resetGame(this.time);
-        return;
-      }
-      // код который действует, если выбрать кроме '---'
-      const foundImage = this.arrayPictures.find(
-        (image) => image.name === value
-      );
-      this.matrixPicture = foundImage.pixels;
-
-      resetGame(this.time);
-      initGame(this.matrixPicture, this.time);
-    };
-
-    /**
-     * Перезаписываю событие, избавляюсь от постоянно увеличивающегося вывода
-     */
-
-    this.imageSection.removeEventListener('change', this.handleChange);
-    this.imageSection.addEventListener('change', this.handleChange);
-    /* ---------------------- */
+    this.imageSection.removeEventListener('change', () => this.handleChanged());
+    this.imageSection.addEventListener('change', () => this.handleChanged());
+    /* --------------------------------------------------------------------- */
 
     this.arrayPictures.forEach((element) => {
       const option = document.createElement('option');
@@ -123,6 +102,32 @@ export default class CreateOptions {
       option.textContent = element.name;
       option.setAttribute('value', `${element.name}`);
     });
+  }
+
+  initGameOnStartAsync() {
+    const asyncFunc = async () => {
+      try {
+        await this.section.appendChild(this.ground.getElement());
+        this.initGameOnStart();
+      } catch (err) {
+        throw new Error(`Ошибка в АСИНХРОННОМ генерировании подсказок(${err})`);
+      }
+    };
+    asyncFunc();
+  }
+
+  handleChanged() {
+    const { value } = this.imageSection;
+    const foundImage = this.arrayPictures.find((image) => image.name === value);
+    this.matrixPicture = foundImage.pixels;
+
+    resetGame(this.time);
+    initGame(this.matrixPicture, this.time);
+  }
+
+  initGameOnStart() {
+    const matrixPicture = this.arrayPictures[0].pixels;
+    initGame(matrixPicture, this.time);
   }
 
   initButtonsSection() {

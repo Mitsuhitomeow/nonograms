@@ -33,7 +33,6 @@ export function initGame(data, time) {
         alert(`Массивы идентичны!, Время: ${solutionTime}`);
         setResults(time);
       }
-      console.log(matrix);
     });
   });
 
