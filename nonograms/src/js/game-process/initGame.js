@@ -83,14 +83,19 @@ export function resetGround(time) {
 
 export function saveGame(time) {
   const continueBtn = document.querySelector('.continue__btn');
-  const imageSection = document.querySelector('.main__options-select');
-  const { value } = imageSection;
+  const sizeValueElement = document.querySelector('.main__options-select');
+  const imageValueElement = document.querySelector('.image__section');
+
+  const sizeValue = sizeValueElement.value;
+  const imageValue = imageValueElement.value;
+  console.log(imageValue);
 
   continueBtn.disabled = false;
 
   const objSaveGame = {
-    image: matrix,
-    size: value,
+    imageMatrix: matrix,
+    sizeSelect: sizeValue,
+    imageSelect: imageValue,
     time,
   };
 

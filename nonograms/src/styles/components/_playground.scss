@@ -65,7 +65,7 @@
   align-items: center;
 
   width: 30px;
-
+  border-bottom: 4px solid rgb(117, 117, 117);
 
   span {
     line-height: 1;
@@ -90,6 +90,7 @@
   justify-content: end;
   align-items: center;
 
+  border-right: 4px solid rgb(117, 117, 117);
   span {
     line-height: 1;
     letter-spacing: -1px;

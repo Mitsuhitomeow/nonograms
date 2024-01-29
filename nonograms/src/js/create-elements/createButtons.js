@@ -1,5 +1,6 @@
 import { resetGround, saveGame } from '../game-process/initGame';
 import { continueGame, getResults } from '../game-process/initLocalstorage';
+import initSolution from '../game-process/initSolution';
 
 export default function createButtons(block, time) {
   const sectionButtons = block;
@@ -40,6 +41,7 @@ export default function createButtons(block, time) {
   saveBtn.addEventListener('click', () => saveGame(time));
   continueBtn.addEventListener('click', continueGame);
   resultBtn.addEventListener('click', getResults);
+  solutionBtn.addEventListener('click', () => initSolution(time));
 
   block.appendChild(buttonsBlock);
 
@@ -60,19 +62,23 @@ export default function createButtons(block, time) {
    * Кнопки без функционала, заблокированы,*
    * выводят только сообщение в консоль.   *
    * Добавлено:                            *
-   *   - Кнопка save, заносит матрицу в    *
-   *   localstorage.                       *
+   *   - Кнопка save, заносит матрицу и    *
+   *   другие данные в localstorage.       *
    *   - Кнопка continue разблокируется,   *
    *   если в localstorage есть данные от  *
-   *   нажатия на save.                    *
+   *   нажатия на save, выводит данные от  *
+   *   сохранения в консоль, пока что.     *
+   *   - кнопка Solution заполняет поле    *
+   *   показывая картинку.                 *
    * ------------------------------------- *
    */
+
   // saveBtn.disabled = true;
+  // solutionBtn.disabled = true;
   const isContinue = JSON.parse(localStorage.getItem('continue'));
   continueBtn.disabled = isContinue !== false;
 
   resultBtn.disabled = true;
-  solutionBtn.disabled = true;
   randomBtn.disabled = true;
   /* ------------------------------------- */
 }
