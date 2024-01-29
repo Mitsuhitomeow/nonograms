@@ -31,11 +31,27 @@ export function initGame(data, time) {
 
     if (isEqual) {
       const solutionTime = time.getTime();
-
       time.pause();
-      alert(`Массивы идентичны!, Время: ${solutionTime}`);
-      setResults(time);
+
+      const sizeValueElement = document.querySelector('.main__options-select');
+      const imageValueElement = document.querySelector('.image__section');
+
+      const selectedValue = sizeValueElement.value;
+      const selectedOption = Array.from(sizeValueElement.options).find(
+        (option) => option.value === selectedValue
+      );
+
+      const setResult = {
+        size: selectedOption ? selectedOption.textContent : '', // текстовое содержание выбранной опции
+        name: imageValueElement.value,
+        time: solutionTime,
+        sec: time.second,
+      };
+
+      setResults(setResult);
+
       newMatrix = Array.from({ length: squares.length }, () => 0);
+      alert(`Массивы идентичны!, Время: ${solutionTime}`);
     }
     console.log(newMatrix);
   };

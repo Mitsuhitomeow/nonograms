@@ -69,16 +69,20 @@ export default function createButtons(block, time) {
    *   нажатия на save, выводит данные от  *
    *   сохранения в консоль, пока что.     *
    *   - кнопка Solution заполняет поле    *
-   *   показывая картинку.                 *
+   *   показывая картинку.
+   *   - кнопка Results выводит результаты *
+   *   последних 5 игры, сортируя по вре-  *
+   *   мени.                               *
    * ------------------------------------- *
    */
 
   // saveBtn.disabled = true;
   // solutionBtn.disabled = true;
-  const isContinue = JSON.parse(localStorage.getItem('continue'));
-  continueBtn.disabled = isContinue !== false;
+  // const isContinue = JSON.parse(localStorage.getItem('continue'));
+  // continueBtn.disabled = isContinue !== false;
+  // resultBtn.disabled = true;
 
-  resultBtn.disabled = true;
+  continueBtn.disabled = true;
   randomBtn.disabled = true;
   /* ------------------------------------- */
 }

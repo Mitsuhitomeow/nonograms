@@ -1,3 +1,4 @@
+import openModal from '../create-elements/createModal';
 import createContinueGame from './createContinueGame';
 
 export function continueGame() {
@@ -7,14 +8,16 @@ export function continueGame() {
   // todo: Сгенерировать поле по матрице...
 }
 
-export function setResults(time) {
-  console.log('записано в таблицу: ', time.getTime());
+export function setResults(data) {
+  const isData = JSON.parse(localStorage.getItem('results'));
 
-  // todo: Сделать функцию заполнения таблицы результатов...
+  const arrayResults =
+    isData !== null ? JSON.parse(localStorage.getItem('results')) : [];
+
+  arrayResults.push(data);
+  localStorage.setItem('results', JSON.stringify(arrayResults));
 }
 
 export function getResults() {
-  console.log('results: ');
-
-  // todo: Cделать список результатов с сортировкой по времени...
+  openModal();
 }
