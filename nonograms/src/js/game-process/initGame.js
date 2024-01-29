@@ -42,7 +42,7 @@ export function initGame(data, time) {
       );
 
       const setResult = {
-        size: selectedOption ? selectedOption.textContent : '', // текстовое содержание выбранной опции
+        size: selectedOption ? selectedOption.textContent : '',
         name: imageValueElement.value,
         time: solutionTime,
         sec: time.second,
