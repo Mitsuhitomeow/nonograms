@@ -37,7 +37,7 @@ export default function createButtons(block, time) {
   });
 
   resetBtn.addEventListener('click', () => resetGround(time));
-  saveBtn.addEventListener('click', saveGame);
+  saveBtn.addEventListener('click', () => saveGame(time));
   continueBtn.addEventListener('click', continueGame);
   resultBtn.addEventListener('click', getResults);
 
@@ -45,6 +45,9 @@ export default function createButtons(block, time) {
 
   sectionButtons.className = 'main__section-buttons';
   buttonsBlock.className = 'main__block-buttons';
+  resetBtn.classList.add('reset__btn');
+  continueBtn.classList.add('continue__btn');
+
   resetBtn.textContent = 'Reset';
   saveBtn.textContent = 'Save';
   continueBtn.textContent = 'Continue';
@@ -56,10 +59,18 @@ export default function createButtons(block, time) {
   /** todo: Добавить функционал кнопкам.   *
    * Кнопки без функционала, заблокированы,*
    * выводят только сообщение в консоль.   *
+   * Добавлено:                            *
+   *   - Кнопка save, заносит матрицу в    *
+   *   localstorage.                       *
+   *   - Кнопка continue разблокируется,   *
+   *   если в localstorage есть данные от  *
+   *   нажатия на save.                    *
    * ------------------------------------- *
    */
-  saveBtn.disabled = true;
-  continueBtn.disabled = true;
+  // saveBtn.disabled = true;
+  const isContinue = JSON.parse(localStorage.getItem('continue'));
+  continueBtn.disabled = isContinue !== false;
+
   resultBtn.disabled = true;
   solutionBtn.disabled = true;
   randomBtn.disabled = true;

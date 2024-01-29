@@ -3,37 +3,46 @@ import clearHint from './clearHint';
 import { setResults } from './initLocalstorage';
 
 let matrix;
-let newMatrix;
+let matrixData;
+let timeData;
 
 export function initGame(data, time) {
+  matrixData = data;
+  timeData = time;
+  console.log(matrix);
   const squares = document.querySelectorAll('.column');
   const matrixPicture = data;
-  matrix = [];
+  let newMatrix = matrix;
+  if (!newMatrix || newMatrix.length !== squares.length) {
+    newMatrix = Array.from({ length: squares.length }, () => 0);
+  }
 
-  squares.forEach(() => matrix.push(0));
+  const handleClick = (square, index) => {
+    matrix = newMatrix;
+    if (square.classList.contains('cross')) return;
 
-  newMatrix = matrix;
+    if (newMatrix[index] === 0) {
+      newMatrix[index] = 1;
+    } else {
+      newMatrix[index] = 0;
+    }
+
+    const isEqual = newMatrix.every((item, ind) => item === data.flat()[ind]);
+
+    if (isEqual) {
+      const solutionTime = time.getTime();
+
+      time.pause();
+      alert(`Массивы идентичны!, Время: ${solutionTime}`);
+      setResults(time);
+      newMatrix = Array.from({ length: squares.length }, () => 0);
+    }
+    console.log(newMatrix);
+  };
 
   squares.forEach((square, index) => {
-    square.addEventListener('click', () => {
-      if (square.classList.contains('cross')) return;
-
-      if (newMatrix[index] === 0) {
-        newMatrix[index] = 1;
-      } else {
-        newMatrix[index] = 0;
-      }
-
-      const isEqual = newMatrix.every((item, ind) => item === data.flat()[ind]);
-
-      if (isEqual) {
-        const solutionTime = time.getTime();
-
-        time.pause();
-        alert(`Массивы идентичны!, Время: ${solutionTime}`);
-        setResults(time);
-      }
-    });
+    square.removeEventListener('click', () => handleClick(square, index));
+    square.addEventListener('click', () => handleClick(square, index));
   });
 
   calcSequenceForHint(matrixPicture);
@@ -41,9 +50,7 @@ export function initGame(data, time) {
 
 export function resetGame(time) {
   const squares = document.querySelectorAll('.column');
-  matrix = [];
-  squares.forEach(() => matrix.push(0));
-  newMatrix = matrix;
+  matrix = Array.from({ length: squares.length }, () => 0);
 
   squares.forEach((elem) => {
     const square = elem;
@@ -58,10 +65,8 @@ export function resetGame(time) {
 }
 
 export function resetGround(time) {
-  matrix = [];
   const squares = document.querySelectorAll('.column');
-  squares.forEach(() => matrix.push(0));
-  newMatrix = matrix;
+  matrix = Array.from({ length: squares.length }, () => 0);
 
   squares.forEach((elem) => {
     const square = elem;
@@ -72,14 +77,23 @@ export function resetGround(time) {
 
   time.pause();
   time.restart();
+  clearHint();
+  initGame(matrixData, timeData);
 }
 
-export function saveGame() {
-  console.log('save: ', matrix);
+export function saveGame(time) {
+  const continueBtn = document.querySelector('.continue__btn');
+  const imageSection = document.querySelector('.main__options-select');
+  const { value } = imageSection;
 
-  if (matrix) {
-    localStorage.setItem('saveGame', JSON.stringify(matrix));
-  }
+  continueBtn.disabled = false;
 
-  // todo: Допилить сохранение матрицы картинки...
+  const objSaveGame = {
+    image: matrix,
+    size: value,
+    time,
+  };
+
+  localStorage.setItem('saveGame', JSON.stringify(objSaveGame));
+  localStorage.setItem('continue', JSON.stringify(false));
 }

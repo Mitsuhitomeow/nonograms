@@ -4,9 +4,10 @@ import { initGame, resetGame } from '../game-process/initGame';
 import createButtons from './createButtons';
 
 export default class CreateOptions {
-  constructor(time) {
+  constructor(time, size = 5) {
     this.time = time;
-    this.ground = new CreatePlayground(5, time);
+    console.log(size);
+    this.ground = new CreatePlayground(size, time);
     this.value = 5;
     this.size = this.value;
     this.arrayPictures = nonograms.images;
@@ -29,6 +30,8 @@ export default class CreateOptions {
     this.initGroundSize();
     this.initButtonsSection();
     this.initImageSelection(this.value);
+
+    this.initGameOnStartAsync();
   }
 
   initGroundSize() {
@@ -71,8 +74,6 @@ export default class CreateOptions {
 
       this.handleChanged();
     });
-
-    this.initGameOnStartAsync();
   }
 
   initImageSelection(size) {
@@ -83,7 +84,7 @@ export default class CreateOptions {
 
     this.container.appendChild(this.imageSection);
 
-    // делаю копию узла, что бы сбросить состояние.
+    // // делаю копию узла, что бы сбросить состояние.
     const newImageSection = this.imageSection.cloneNode(true);
     this.container.replaceChild(newImageSection, this.imageSection);
     this.imageSection = newImageSection;
@@ -119,10 +120,11 @@ export default class CreateOptions {
   handleChanged() {
     const { value } = this.imageSection;
     const foundImage = this.arrayPictures.find((image) => image.name === value);
-    this.matrixPicture = foundImage.pixels;
+    const newMatrixPicture = foundImage.pixels;
+    this.matrixPicture = newMatrixPicture;
 
     resetGame(this.time);
-    initGame(this.matrixPicture, this.time);
+    initGame(newMatrixPicture, this.time);
   }
 
   initGameOnStart() {
