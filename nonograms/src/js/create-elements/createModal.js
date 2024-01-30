@@ -21,54 +21,42 @@ document.body.appendChild(modal);
 modal.appendChild(modalContent);
 modalContent.appendChild(closeButton);
 
-let results = 'Not found...';
-
-function calcResults() {
-  results = [];
-
-  const getResult = JSON.parse(localStorage.getItem('results'));
-
-  if (getResult === null) return;
-
-  const sortedArray = getResult.sort((a, b) => {
-    const timeA = new Date(`1970-01-01T${a.time}`);
-    const timeB = new Date(`1970-01-01T${b.time}`);
-    return timeA - timeB;
-  });
-
-  results = sortedArray.slice(0, 5);
-}
-
 export default function openModal() {
-  calcResults();
-
+  const isData = JSON.parse(localStorage.getItem('results'));
+  const results = isData !== null ? isData : [];
   const container = document.createElement('div');
 
   modalContent.innerHTML = '';
   modalContent.appendChild(closeButton);
   modalContent.append(container);
 
-  results.forEach((element, index) => {
-    console.log(element);
-    const result = element;
-    let count = index;
+  if (isData !== null) {
+    results.forEach((element, index) => {
+      console.log(element);
+      const result = element;
+      let count = index;
 
-    const [spanDiv, spanName, spanDifficult, spanTime] = [
-      document.createElement('div'),
-      document.createElement('span'),
-      document.createElement('span'),
-      document.createElement('span'),
-    ];
+      const [spanDiv, spanName, spanDifficult, spanTime] = [
+        document.createElement('div'),
+        document.createElement('span'),
+        document.createElement('span'),
+        document.createElement('span'),
+      ];
 
-    container.appendChild(spanDiv);
-    spanDiv.appendChild(spanName);
-    spanDiv.appendChild(spanDifficult);
-    spanDiv.appendChild(spanTime);
+      container.appendChild(spanDiv);
+      spanDiv.appendChild(spanName);
+      spanDiv.appendChild(spanDifficult);
+      spanDiv.appendChild(spanTime);
 
-    spanName.textContent = `${(count += 1)}. Name of the puzzle: ${result.name}`;
-    spanDifficult.textContent = `Difficulty: ${result.size}`;
-    spanTime.textContent = `Passage time: ${result.time}`;
-  });
+      spanName.textContent = `${(count += 1)}. Name of the puzzle: ${result.name}`;
+      spanDifficult.textContent = `Difficulty: ${result.size}`;
+      spanTime.textContent = `Passage time: ${result.time}`;
+    });
+  } else {
+    const span = document.createElement('span');
+    container.append(span);
+    span.textContent = 'No Data..';
+  }
 
   modal.style.display = 'flex';
 }
