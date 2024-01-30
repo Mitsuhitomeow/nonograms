@@ -1,4 +1,4 @@
-import { resetGround, saveGame } from '../game-process/initGame';
+import { resetGame, saveGame } from '../game-process/initGame';
 import { continueGame, getResults } from '../game-process/initLocalstorage';
 import initSolution from '../game-process/initSolution';
 
@@ -37,7 +37,7 @@ export default function createButtons(block, time) {
     buttonsBlock.appendChild(btn);
   });
 
-  resetBtn.addEventListener('click', () => resetGround(time));
+  resetBtn.addEventListener('click', () => resetGame(time));
   saveBtn.addEventListener('click', () => saveGame(time));
   continueBtn.addEventListener('click', continueGame);
   resultBtn.addEventListener('click', getResults);

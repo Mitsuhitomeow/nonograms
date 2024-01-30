@@ -3,6 +3,7 @@ import nonograms from '../../nongrams-db.json';
 import { initGame, resetGame, setMatrixData } from '../game-process/initGame';
 import createButtons from './createButtons';
 import calcSequenceForHint from '../game-process/calcHint';
+import clearHint from '../game-process/clearHint';
 
 export default class CreateOptions {
   constructor(time, size = 5) {
@@ -75,7 +76,7 @@ export default class CreateOptions {
       this.initGameOnStartAsync();
 
       this.handleChanged();
-      resetGame(this.time);
+      clearHint();
     });
   }
 
@@ -130,6 +131,7 @@ export default class CreateOptions {
 
     setMatrixData(this.matrixPicture);
     resetGame(this.time);
+    clearHint();
     calcSequenceForHint(this.matrixPicture);
   }
 

@@ -1,5 +1,4 @@
 import calcSequenceForHint from './calcHint';
-import clearHint from './clearHint';
 import { setResults } from './initLocalstorage';
 
 let matrix;
@@ -70,24 +69,8 @@ export function initGame(data, time) {
 
 export function resetGame(time) {
   const squares = document.querySelectorAll('.column');
-  matrix = Array.from({ length: squares.length }, () => 0);
-
-  squares.forEach((elem) => {
-    const square = elem;
-    square.classList.remove('black');
-    square.classList.remove('cross');
-    square.innerHTML = '';
-  });
-
-  time.pause();
-  time.restart();
-  clearHint();
-}
-
-export function resetGround(time) {
-  const squares = document.querySelectorAll('.column');
-  matrix = Array.from({ length: squares.length }, () => 0);
-  console.log(matrix);
+  newMatrix = Array.from({ length: squares.length }, () => 0);
+  matrix = newMatrix;
 
   squares.forEach((elem) => {
     const square = elem;
