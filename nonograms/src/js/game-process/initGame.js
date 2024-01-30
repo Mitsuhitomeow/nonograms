@@ -4,20 +4,22 @@ import { setResults } from './initLocalstorage';
 
 let matrix;
 let matrixData;
-let timeData;
+let newMatrix;
+
+export function setMatrixData(value) {
+  matrixData = value;
+}
 
 export function initGame(data, time) {
-  matrixData = data;
-  timeData = time;
-  console.log(matrix);
   const squares = document.querySelectorAll('.column');
   const matrixPicture = data;
-  let newMatrix = matrix;
+  newMatrix = matrix;
   if (!newMatrix || newMatrix.length !== squares.length) {
     newMatrix = Array.from({ length: squares.length }, () => 0);
   }
 
   const handleClick = (square, index) => {
+    console.log('assd', matrixData);
     matrix = newMatrix;
     if (square.classList.contains('cross')) return;
 
@@ -27,7 +29,9 @@ export function initGame(data, time) {
       newMatrix[index] = 0;
     }
 
-    const isEqual = newMatrix.every((item, ind) => item === data.flat()[ind]);
+    const isEqual = newMatrix.every(
+      (item, ind) => item === matrixData.flat()[ind]
+    );
 
     if (isEqual) {
       const solutionTime = time.getTime();
@@ -83,6 +87,7 @@ export function resetGame(time) {
 export function resetGround(time) {
   const squares = document.querySelectorAll('.column');
   matrix = Array.from({ length: squares.length }, () => 0);
+  console.log(matrix);
 
   squares.forEach((elem) => {
     const square = elem;
@@ -93,8 +98,6 @@ export function resetGround(time) {
 
   time.pause();
   time.restart();
-  clearHint();
-  initGame(matrixData, timeData);
 }
 
 export function saveGame(time) {

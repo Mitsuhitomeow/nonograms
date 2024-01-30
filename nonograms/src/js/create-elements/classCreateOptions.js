@@ -1,7 +1,8 @@
 import CreatePlayground from './classCreatePlayground';
 import nonograms from '../../nongrams-db.json';
-import { initGame, resetGame } from '../game-process/initGame';
+import { initGame, resetGame, setMatrixData } from '../game-process/initGame';
 import createButtons from './createButtons';
+import calcSequenceForHint from '../game-process/calcHint';
 
 export default class CreateOptions {
   constructor(time, size = 5) {
@@ -71,8 +72,10 @@ export default class CreateOptions {
       this.size = +this.sizeControl.value;
       this.initImageSelection(this.size);
       this.ground.updatePlayground(this.size);
+      this.initGameOnStartAsync();
 
       this.handleChanged();
+      resetGame(this.time);
     });
   }
 
@@ -109,6 +112,7 @@ export default class CreateOptions {
     const asyncFunc = async () => {
       try {
         await this.section.appendChild(this.ground.getElement());
+        setMatrixData(this.matrixPicture);
         this.initGameOnStart();
       } catch (err) {
         throw new Error(`Ошибка в АСИНХРОННОМ генерировании подсказок(${err})`);
@@ -122,9 +126,11 @@ export default class CreateOptions {
     const foundImage = this.arrayPictures.find((image) => image.name === value);
     const newMatrixPicture = foundImage.pixels;
     this.matrixPicture = newMatrixPicture;
+    console.log(this.matrixPicture);
 
+    setMatrixData(this.matrixPicture);
     resetGame(this.time);
-    initGame(newMatrixPicture, this.time);
+    calcSequenceForHint(this.matrixPicture);
   }
 
   initGameOnStart() {
