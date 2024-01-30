@@ -1,12 +1,4 @@
 import openModal from '../create-elements/createModal';
-import createContinueGame from './createContinueGame';
-
-export function continueGame() {
-  const matrix = JSON.parse(localStorage.getItem('saveGame'));
-
-  createContinueGame(matrix);
-  // todo: Сгенерировать поле по матрице...
-}
 
 export function setResults(data) {
   const isData = JSON.parse(localStorage.getItem('results'));

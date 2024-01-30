@@ -9,6 +9,10 @@ export function setMatrixData(value) {
   matrixData = value;
 }
 
+export function setMatrixValue(value) {
+  newMatrix = value;
+}
+
 export function initGame(data, time) {
   const squares = document.querySelectorAll('.column');
   const matrixPicture = data;
@@ -95,7 +99,8 @@ export function saveGame(time) {
   continueBtn.disabled = false;
 
   const objSaveGame = {
-    imageMatrix: matrix,
+    resultImage: matrixData,
+    imageMatrix: newMatrix,
     sizeSelect: sizeValue,
     imageSelect: imageValue,
     time,

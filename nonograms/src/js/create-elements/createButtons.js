@@ -1,5 +1,6 @@
+import createContinueGame from '../game-process/createContinueGame';
 import { resetGame, saveGame } from '../game-process/initGame';
-import { continueGame, getResults } from '../game-process/initLocalstorage';
+import { getResults } from '../game-process/initLocalstorage';
 import initSolution from '../game-process/initSolution';
 
 export default function createButtons(block, time) {
@@ -39,7 +40,7 @@ export default function createButtons(block, time) {
 
   resetBtn.addEventListener('click', () => resetGame(time));
   saveBtn.addEventListener('click', () => saveGame(time));
-  continueBtn.addEventListener('click', continueGame);
+  continueBtn.addEventListener('click', createContinueGame);
   resultBtn.addEventListener('click', getResults);
   solutionBtn.addEventListener('click', () => initSolution(time));
 
@@ -78,11 +79,11 @@ export default function createButtons(block, time) {
 
   // saveBtn.disabled = true;
   // solutionBtn.disabled = true;
-  // const isContinue = JSON.parse(localStorage.getItem('continue'));
-  // continueBtn.disabled = isContinue !== false;
+  const isSave = JSON.parse(localStorage.getItem('saveGame'));
+  continueBtn.disabled = isSave === null;
+  // continueBtn.disabled = true;
   // resultBtn.disabled = true;
 
-  continueBtn.disabled = true;
   randomBtn.disabled = true;
   /* ------------------------------------- */
 }
