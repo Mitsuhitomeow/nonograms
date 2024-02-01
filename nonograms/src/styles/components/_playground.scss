@@ -41,6 +41,20 @@
   }
 }
 
+.cross_solution {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 25px;
+
+    @media screen and (max-width:610px) {
+      width: 15px;
+    }
+  }
+}
+
 .hint {
   border: 1px solid rgb(117, 117, 117);
 }

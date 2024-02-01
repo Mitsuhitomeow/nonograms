@@ -1,5 +1,4 @@
 import clearHint from './clearHint';
-import nonograms from '../../nongrams-db.json';
 import { setMatrixValue } from './initGame';
 
 function delay() {
@@ -26,24 +25,14 @@ export default async function createContinueGame(stopwatch) {
 
   try {
     const { time, sizeSelect, imageSelect, crosses } = data;
-    const arrayPictures = nonograms.images[sizeSelect];
-    const foundImage = arrayPictures.find(
-      (image) => image.name === imageSelect
-    ).pixels;
-
-    console.log(`matrix: ${data.imageMatrix}
-    matrixData: ${foundImage}
-    select size: ${sizeSelect}
-    select image: ${imageSelect}
-    time: ${time}
-    crosses: ${crosses}`);
-
     const sizeControl = document.querySelector('.main__options-select');
+
     sizeControl.value = sizeSelect;
     sizeControl.dispatchEvent(eventSize);
 
     await delay();
     clearHint();
+
     const imageControl = document.querySelector('.image__section');
     const squares = document.querySelectorAll('.column');
     const { imageMatrix } = data;
@@ -55,18 +44,18 @@ export default async function createContinueGame(stopwatch) {
     squares.forEach((element, index) => {
       const square = element;
       square.innerHTML = '';
-      square.classList.remove('black', 'cross');
+      square.classList.remove('black', 'cross', 'cross_solution');
 
       setTimeout(() => {
         if (imageMatrix[index] === 0) {
-          square.classList.remove('black', 'cross');
+          square.classList.remove('black', 'cross', 'cross_solution');
         }
         if (imageMatrix[index] === 1) {
-          square.classList.remove('black', 'cross');
+          square.classList.remove('black', 'cross', 'cross_solution');
           square.classList.add('black');
         }
         if (crosses[index] === 1) {
-          square.classList.remove('black', 'cross');
+          square.classList.remove('black', 'cross', 'cross_solution');
           square.classList.add('cross');
           square.innerHTML = `
             <svg viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">

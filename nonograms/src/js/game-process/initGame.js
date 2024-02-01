@@ -78,8 +78,7 @@ export function resetGame(time) {
 
   squares.forEach((elem) => {
     const square = elem;
-    square.classList.remove('black');
-    square.classList.remove('cross');
+    square.classList.remove('black', 'cross', 'cross_solution');
     square.innerHTML = '';
   });
 

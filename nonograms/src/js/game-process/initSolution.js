@@ -19,12 +19,12 @@ export default function initSolution(time) {
     const square = element;
     time.pause();
     square.innerHTML = '';
-    square.classList.remove('black', 'cross');
+    square.classList.remove('black', 'cross', 'cross_solution');
 
     setTimeout(() => {
       if (foundImage[index] === 0) {
-        square.classList.remove('black', 'cross');
-        square.classList.add('cross');
+        square.classList.remove('black', 'cross', 'cross_solution');
+        square.classList.add('cross_solution');
         square.innerHTML = `
         <svg viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
           <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -36,7 +36,7 @@ export default function initSolution(time) {
         </svg>
       `;
       } else if (foundImage[index] === 1) {
-        square.classList.remove('black', 'cross');
+        square.classList.remove('black', 'cross', 'cross_solution');
         square.classList.add('black');
       }
     }, ms);
