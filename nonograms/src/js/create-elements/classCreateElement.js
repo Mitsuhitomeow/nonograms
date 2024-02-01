@@ -34,22 +34,20 @@ export default class CreateElement {
 
   initMain() {
     this.main = document.createElement('main');
-    const container = document.createElement('div');
-    const timeSection = document.createElement('div');
-    const timeTick = document.createElement('span');
-
-    const time = new Stopwatch(timeTick);
+    const [container, timeSection] = [
+      document.createElement('div'),
+      document.createElement('div'),
+    ];
+    const time = new Stopwatch();
     const options = new CreateOptions(time);
 
     this.main.className = `main`;
     container.className = `main__container container`;
-    timeTick.className = `section__time`;
 
     this.main.append(container);
     container.append(options.getElementsButton());
     container.append(options.getElement());
     container.append(timeSection);
-    timeSection.append(timeTick);
 
     this.components.push(this.main);
   }

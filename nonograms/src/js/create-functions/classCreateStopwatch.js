@@ -1,19 +1,17 @@
 export default class Stopwatch {
-  constructor(span) {
+  constructor() {
     this.second = 0;
     this.minute = 0;
-    this.hour = 0;
 
     this.running = false;
     this.intervalId = null;
 
-    this.span = span;
-    this.time = '00:00:00';
-    this.span.innerHTML = this.time;
+    this.span = null;
+    this.time = '00:00';
   }
 
   start() {
-    this.time = `${Stopwatch.formatTime(this.hour)}:${Stopwatch.formatTime(this.minute)}:${Stopwatch.formatTime(this.second)}`;
+    this.time = `${Stopwatch.formatTime(this.minute)}:${Stopwatch.formatTime(this.second)}`;
     this.running = true;
     this.intervalId = setInterval(() => {
       this.tick();
@@ -33,8 +31,7 @@ export default class Stopwatch {
   restart() {
     this.second = 0;
     this.minute = 0;
-    this.hour = 0;
-    this.time = '00:00:00';
+    this.time = '00:00';
     this.span.innerHTML = this.time;
   }
 
@@ -44,14 +41,9 @@ export default class Stopwatch {
     if (this.second === 60) {
       this.second = 0;
       this.minute += 1;
-
-      if (this.minute === 60) {
-        this.minute = 0;
-        this.hour += 1;
-      }
     }
 
-    this.time = `${Stopwatch.formatTime(this.hour)}:${Stopwatch.formatTime(this.minute)}:${Stopwatch.formatTime(this.second)}`;
+    this.time = `${Stopwatch.formatTime(this.minute)}:${Stopwatch.formatTime(this.second)}`;
   }
 
   static formatTime(value) {

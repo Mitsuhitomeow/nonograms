@@ -40,7 +40,13 @@ export default class CreatePlayground {
           column.className = `hint hint__left hint__background`;
         }
 
+        // Вставлю в блок инициализированое Время.
         if (i === 0 && j === 0) {
+          const span = document.createElement('span');
+          this.time.span = span;
+          span.innerHTML = this.time.time;
+          column.append(span);
+          span.className = `section__time`;
           column.className = `zero hint__background`;
         }
 
