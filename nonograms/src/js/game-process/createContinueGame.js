@@ -10,6 +10,8 @@ function delay() {
   });
 }
 
+const eventSize = new Event('change');
+
 export default async function createContinueGame() {
   const data = JSON.parse(localStorage.getItem('saveGame'));
 
@@ -28,7 +30,6 @@ export default async function createContinueGame() {
 
     const sizeControl = document.querySelector('.main__options-select');
     sizeControl.value = sizeSelect;
-    const eventSize = new Event('change');
     sizeControl.dispatchEvent(eventSize);
 
     await delay();

@@ -48,6 +48,7 @@ export default class CreateElement {
 
     this.main.className = `main`;
     container.className = `main__container container`;
+    timeTick.className = `section__time`;
 
     this.main.append(container);
     container.append(options.getElementsButton());
