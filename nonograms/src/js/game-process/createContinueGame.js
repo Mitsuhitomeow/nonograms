@@ -50,8 +50,6 @@ export default async function createContinueGame(stopwatch) {
     imageControl.value = imageSelect;
     imageControl.dispatchEvent(eventSize);
 
-    setMatrixValue(imageMatrix);
-
     let ms = 20;
     squares.forEach((element, index) => {
       const square = element;
@@ -69,6 +67,7 @@ export default async function createContinueGame(stopwatch) {
       ms += 20;
     });
 
+    setMatrixValue(imageMatrix);
     updateTime(time);
   } catch (err) {
     console.error(err);
