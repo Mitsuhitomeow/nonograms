@@ -40,7 +40,7 @@ export default function createButtons(block, time) {
 
   resetBtn.addEventListener('click', () => resetGame(time));
   saveBtn.addEventListener('click', () => saveGame(time));
-  continueBtn.addEventListener('click', createContinueGame);
+  continueBtn.addEventListener('click', () => createContinueGame(time));
   resultBtn.addEventListener('click', getResults);
   solutionBtn.addEventListener('click', () => initSolution(time));
 

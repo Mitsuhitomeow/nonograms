@@ -30,7 +30,7 @@ export default class CreateOptions {
     ];
 
     this.initGroundSize();
-    this.initButtonsSection();
+    this.initButtonsSection(this.time);
     this.initImageSelection(this.value);
 
     this.initGameOnStartAsync();
@@ -140,8 +140,8 @@ export default class CreateOptions {
     initGame(matrixPicture, this.time);
   }
 
-  initButtonsSection() {
-    createButtons(this.sectionButton, this.time);
+  initButtonsSection(time) {
+    createButtons(this.sectionButton, time);
   }
 
   getElementsButton() {

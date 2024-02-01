@@ -38,12 +38,7 @@ export default class CreateElement {
     const timeSection = document.createElement('div');
     const timeTick = document.createElement('span');
 
-    const time = new Stopwatch();
-    setInterval(() => {
-      timeTick.innerHTML = '';
-      timeTick.textContent = time.getTime();
-    }, 1000);
-
+    const time = new Stopwatch(timeTick);
     const options = new CreateOptions(time);
 
     this.main.className = `main`;

@@ -12,8 +12,17 @@ function delay() {
 
 const eventSize = new Event('change');
 
-export default async function createContinueGame() {
+export default async function createContinueGame(stopwatch) {
   const data = JSON.parse(localStorage.getItem('saveGame'));
+
+  function updateTime(newTime) {
+    const oldTime = stopwatch;
+    oldTime.time = newTime.time;
+    oldTime.second = newTime.second;
+    oldTime.minute = newTime.minute;
+    oldTime.hour = newTime.hour;
+    oldTime.span.innerHTML = newTime.time;
+  }
 
   try {
     const { time, sizeSelect, imageSelect } = data;
@@ -59,6 +68,8 @@ export default async function createContinueGame() {
       }, ms);
       ms += 20;
     });
+
+    updateTime(time);
   } catch (err) {
     console.error(err);
     throw new Error('ERROR CREATE CONTINUE: ', err);

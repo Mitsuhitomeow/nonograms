@@ -1,11 +1,15 @@
 export default class Stopwatch {
-  constructor() {
+  constructor(span) {
     this.second = 0;
     this.minute = 0;
     this.hour = 0;
-    this.time = '00:00:00';
+
     this.running = false;
     this.intervalId = null;
+
+    this.span = span;
+    this.time = '00:00:00';
+    this.span.innerHTML = this.time;
   }
 
   start() {
@@ -13,6 +17,8 @@ export default class Stopwatch {
     this.running = true;
     this.intervalId = setInterval(() => {
       this.tick();
+      this.span.innerHTML = '';
+      this.span.innerHTML = this.time;
     }, 1000);
   }
 
@@ -29,6 +35,7 @@ export default class Stopwatch {
     this.minute = 0;
     this.hour = 0;
     this.time = '00:00:00';
+    this.span.innerHTML = this.time;
   }
 
   tick() {
