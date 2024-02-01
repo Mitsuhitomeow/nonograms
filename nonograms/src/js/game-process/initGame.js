@@ -88,23 +88,34 @@ export function resetGame(time) {
 }
 
 export function saveGame(time) {
-  const continueBtn = document.querySelector('.continue__btn');
-  const sizeValueElement = document.querySelector('.main__options-select');
-  const imageValueElement = document.querySelector('.image__section');
+  const crossMatrix = [];
+  const [continueBtn, sizeValueElement, imageValueElement, squares] = [
+    document.querySelector('.continue__btn'),
+    document.querySelector('.main__options-select'),
+    document.querySelector('.image__section'),
+    document.querySelectorAll('.column'),
+  ];
+
+  squares.forEach((square) => {
+    if (!square.classList.contains('cross')) {
+      crossMatrix.push(0);
+    } else {
+      crossMatrix.push(1);
+    }
+  });
 
   const sizeValue = sizeValueElement.value;
   const imageValue = imageValueElement.value;
-  console.log(imageValue);
-
-  continueBtn.disabled = false;
-
   const objSaveGame = {
     resultImage: matrixData,
     imageMatrix: newMatrix,
+    crosses: crossMatrix,
     sizeSelect: sizeValue,
     imageSelect: imageValue,
     time,
   };
+
+  continueBtn.disabled = false;
 
   localStorage.setItem('saveGame', JSON.stringify(objSaveGame));
   localStorage.setItem('continue', JSON.stringify(false));
