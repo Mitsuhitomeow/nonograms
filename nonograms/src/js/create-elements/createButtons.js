@@ -1,6 +1,7 @@
 import createContinueGame from '../game-process/createContinueGame';
 import { resetGame, saveGame } from '../game-process/initGame';
 import { getResults } from '../game-process/initLocalstorage';
+import randomGame from '../game-process/initRandomGame';
 import initSolution from '../game-process/initSolution';
 
 export default function createButtons(block, time) {
@@ -43,6 +44,7 @@ export default function createButtons(block, time) {
   continueBtn.addEventListener('click', () => createContinueGame(time));
   resultBtn.addEventListener('click', getResults);
   solutionBtn.addEventListener('click', () => initSolution(time));
+  randomBtn.addEventListener('click', randomGame);
 
   block.appendChild(buttonsBlock);
 
@@ -58,32 +60,6 @@ export default function createButtons(block, time) {
   solutionBtn.textContent = 'Solution';
   randomBtn.textContent = 'Random Game';
 
-  // ---------------------------------------
-  /** todo: Добавить функционал кнопкам.   *
-   * Кнопки без функционала, заблокированы,*
-   * выводят только сообщение в консоль.   *
-   * Добавлено:                            *
-   *   - Кнопка save, заносит матрицу и    *
-   *   другие данные в localstorage.       *
-   *   - Кнопка continue разблокируется,   *
-   *   если в localstorage есть данные от  *
-   *   нажатия на save, выводит данные от  *
-   *   сохранения в консоль, пока что.     *
-   *   - кнопка Solution заполняет поле    *
-   *   показывая картинку.
-   *   - кнопка Results выводит результаты *
-   *   последних 5 игры, сортируя по вре-  *
-   *   мени.                               *
-   * ------------------------------------- *
-   */
-
-  // saveBtn.disabled = true;
-  // solutionBtn.disabled = true;
   const isSave = JSON.parse(localStorage.getItem('saveGame'));
   continueBtn.disabled = isSave === null;
-  // continueBtn.disabled = true;
-  // resultBtn.disabled = true;
-
-  randomBtn.disabled = true;
-  /* ------------------------------------- */
 }

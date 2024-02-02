@@ -52,6 +52,10 @@ export default class CreateOptions {
     this.sizeControl.className = `main__options-select`;
     this.container.className = `options__container`;
 
+    optionHard.className = 'option__size';
+    optionMedium.className = 'option__size';
+    optionEasy.className = 'option__size';
+
     optionEasy.setAttribute('value', '5');
     optionMedium.setAttribute('value', '10');
     optionHard.setAttribute('value', '15');
@@ -104,6 +108,7 @@ export default class CreateOptions {
     this.arrayPictures.forEach((element) => {
       const option = document.createElement('option');
       this.imageSection.appendChild(option);
+      option.className = 'option__image';
       option.textContent = element.name;
       option.setAttribute('value', `${element.name}`);
     });
