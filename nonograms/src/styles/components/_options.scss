@@ -1,6 +1,54 @@
 .options__container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 
   padding: 5px;
 }
+
+.main__options-select,
+.image__section {
+
+  margin: 5px;
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 14px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background-color: #7c7c7c;
+  color: #fff;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+  }
+
+  @media (hover:hover) {
+    &:hover {
+      border-color: #464646;
+    }
+  }
+}
+
+/* Стили для опций в выпадающем списке */
+.option__size,
+.option__image {
+  padding: 8px;
+  font-size: 14px;
+  color: #fff;
+
+  @media (hover:hover) {
+    &:hover {
+      background-color: #3498db;
+      color: #fff;
+    }
+  }
+}
+
+/* Стили для выпадающего списка при наведении */
+
+/* Стили для выпадающего списка при фокусе */
+
+/* Стили для опций в выпадающем списке при наведении */

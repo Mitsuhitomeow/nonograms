@@ -5,5 +5,23 @@
 
 .main__block-buttons {
   display: flex;
+  justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
+
+  button {
+    display: inline-block;
+
+    margin: 1px;
+    padding: 5px 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #7c7c7c;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
 }

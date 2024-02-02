@@ -50,6 +50,7 @@ export default class CreateOptions {
 
     this.sizeControl.className = `main__options-select`;
     this.container.className = `options__container`;
+    this.section.className = `select__ground-container`;
 
     optionHard.className = 'option__size';
     optionMedium.className = 'option__size';
