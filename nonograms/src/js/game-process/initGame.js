@@ -22,8 +22,8 @@ export function initGame(data, time) {
   }
 
   const handleClick = (square, index) => {
-    console.log('assd', matrixData);
     matrix = newMatrix;
+
     if (square.classList.contains('cross')) return;
 
     if (newMatrix[index] === 0) {
@@ -36,31 +36,29 @@ export function initGame(data, time) {
       (item, ind) => item === matrixData.flat()[ind]
     );
 
-    if (isEqual) {
-      const solutionTime = time.getTime();
-      time.pause();
+    if (!isEqual) return;
 
-      const sizeValueElement = document.querySelector('.main__options-select');
-      const imageValueElement = document.querySelector('.image__section');
+    time.pause();
+    const solutionTime = time.getTime();
+    const [sizeValueElement, imageValueElement] = [
+      document.querySelector('.main__options-select'),
+      document.querySelector('.image__section'),
+    ];
+    const selectedValue = sizeValueElement.value;
+    const selectedOption = Array.from(sizeValueElement.options).find(
+      (option) => option.value === selectedValue
+    );
+    const setResult = {
+      size: selectedOption ? selectedOption.textContent : '',
+      name: imageValueElement.value,
+      time: solutionTime,
+      sec: time.second,
+    };
 
-      const selectedValue = sizeValueElement.value;
-      const selectedOption = Array.from(sizeValueElement.options).find(
-        (option) => option.value === selectedValue
-      );
+    setResults(setResult);
 
-      const setResult = {
-        size: selectedOption ? selectedOption.textContent : '',
-        name: imageValueElement.value,
-        time: solutionTime,
-        sec: time.second,
-      };
-
-      setResults(setResult);
-
-      newMatrix = Array.from({ length: squares.length }, () => 0);
-      alert(`Массивы идентичны!, Время: ${solutionTime}`);
-    }
-    console.log(newMatrix);
+    newMatrix = Array.from({ length: squares.length }, () => 0);
+    alert(`Массивы идентичны!, Время: ${solutionTime}`);
   };
 
   squares.forEach((square, index) => {

@@ -75,7 +75,6 @@ export default async function createContinueGame(stopwatch) {
     setMatrixValue(imageMatrix);
     updateTime(time);
   } catch (err) {
-    console.error(err);
-    throw new Error('ERROR CREATE CONTINUE: ', err);
+    throw new Error(err.message);
   }
 }

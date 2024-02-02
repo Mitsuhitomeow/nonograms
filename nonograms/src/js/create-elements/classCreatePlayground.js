@@ -51,13 +51,8 @@ export default class CreatePlayground {
         }
 
         this.columns.push(column);
-
-        // if (i !== 0 || j !== 0) {
-        //   this.matrix.push([]);
-        // }
       }
     }
-    // console.log(this.matrix)
   }
 
   addClick() {

@@ -8,7 +8,6 @@ import clearHint from '../game-process/clearHint';
 export default class CreateOptions {
   constructor(time, size = 5) {
     this.time = time;
-    console.log(size);
     this.ground = new CreatePlayground(size, time);
     this.value = 5;
     this.size = this.value;
@@ -132,7 +131,6 @@ export default class CreateOptions {
     const foundImage = this.arrayPictures.find((image) => image.name === value);
     const newMatrixPicture = foundImage.pixels;
     this.matrixPicture = newMatrixPicture;
-    console.log(this.matrixPicture);
 
     setMatrixData(this.matrixPicture);
     resetGame(this.time);

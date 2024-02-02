@@ -32,7 +32,6 @@ export default function openModal() {
 
   if (isData !== null) {
     results.forEach((element, index) => {
-      console.log(element);
       const result = element;
       let count = index;
 
