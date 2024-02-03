@@ -1,0 +1,23 @@
+.header__darkmode_btn {
+  border: 2px solid #535353;
+  border-radius: 10px;
+  padding: 2px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.darkmode__active {
+  border: 2px solid #fff;
+}
+
+.darkmode_image {
+  width: 30px;
+}
+
+.darkmode__background {
+  background: #2b2b2b;
+}
+
+.darkmode__title {
+  color: #fff;
+}

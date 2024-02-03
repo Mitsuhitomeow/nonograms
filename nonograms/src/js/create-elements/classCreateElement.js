@@ -1,5 +1,6 @@
 import Stopwatch from '../create-functions/classCreateStopwatch';
 import CreateOptions from './classCreateOptions';
+import createDarkMode from './createDarkmodeBtn';
 
 export default class CreateElement {
   constructor() {
@@ -30,6 +31,8 @@ export default class CreateElement {
     div.append(title);
 
     this.components.push(this.header);
+
+    createDarkMode(div);
   }
 
   initMain() {
