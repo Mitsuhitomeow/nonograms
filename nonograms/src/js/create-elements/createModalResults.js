@@ -23,7 +23,7 @@ modalContent.appendChild(closeButton);
 
 export default function openModalResults() {
   const isData = JSON.parse(localStorage.getItem('results'));
-  const results = isData !== null ? isData : [];
+  let results = isData !== null ? isData : [];
   const container = document.createElement('div');
 
   modalContent.innerHTML = '';
@@ -31,6 +31,12 @@ export default function openModalResults() {
   modalContent.append(container);
 
   if (isData !== null) {
+    results = results.sort((a, b) => {
+      const timeA = new Date(`1970-01-01T${a.time}`);
+      const timeB = new Date(`1970-01-01T${b.time}`);
+      return timeA - timeB;
+    });
+
     results.forEach((element, index) => {
       const result = element;
       let count = index;
