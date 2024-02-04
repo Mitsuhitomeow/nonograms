@@ -21,7 +21,7 @@ document.body.appendChild(modal);
 modal.appendChild(modalContent);
 modalContent.appendChild(closeButton);
 
-export default function openModal() {
+export default function openModalResults() {
   const isData = JSON.parse(localStorage.getItem('results'));
   const results = isData !== null ? isData : [];
   const container = document.createElement('div');

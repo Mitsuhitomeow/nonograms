@@ -1,4 +1,4 @@
-import openModal from '../create-elements/createModal';
+import openModalResults from '../create-elements/createModalResults';
 
 export function setResults(data) {
   const isData = JSON.parse(localStorage.getItem('results'));
@@ -20,5 +20,5 @@ export function setResults(data) {
 }
 
 export function getResults() {
-  openModal();
+  openModalResults();
 }
