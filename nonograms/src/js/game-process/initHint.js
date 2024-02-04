@@ -9,6 +9,7 @@ export default function createHint(leftHint, topHint) {
       newHint.forEach((_, ind) => {
         const span = document.createElement('span');
         span.textContent = newHint[ind];
+        span.className = 'hint__number';
         hint.append(span);
       });
     });

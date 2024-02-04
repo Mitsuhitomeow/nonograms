@@ -9,7 +9,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  button {
+  .btn {
     display: inline-block;
 
     margin: 1px;
@@ -18,10 +18,11 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border: 1px solid #000000;
+    border: 1px solid #7c7c7c;
     border-radius: 5px;
-    background-color: #7c7c7c;
-    color: #fff;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-weight: normal;
+    background-color: rgb(185, 180, 174);
+    color: #535353;
+    transition: all .3s ease;
   }
 }
