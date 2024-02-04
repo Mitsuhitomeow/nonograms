@@ -1,9 +1,10 @@
 export default function initDarkMode() {
-  const [title, copyright, darkmodeBtn, sound] = [
+  const [title, copyright, darkmodeBtn, sound, modals] = [
     document.querySelector('.header__title'),
     document.querySelector('.footer__title'),
     document.querySelector('.header__darkmode_btn'),
     document.querySelector('.sound__btn'),
+    document.querySelectorAll('.modal-content'),
   ];
 
   // смена бэкграунда
@@ -18,4 +19,8 @@ export default function initDarkMode() {
 
   // кнопка саунда
   sound.classList.toggle('darkmode__sound');
+
+  // модалки
+
+  modals.forEach((modal) => modal.classList.toggle('darkmode__modal'));
 }

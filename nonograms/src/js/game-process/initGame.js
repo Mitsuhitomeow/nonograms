@@ -1,3 +1,4 @@
+import openModalWin from '../create-elements/createModalWin';
 import calcSequenceForHint from './calcHint';
 import { setResults } from './initLocalstorage';
 
@@ -58,7 +59,9 @@ export function initGame(data, time) {
     setResults(setResult);
 
     newMatrix = Array.from({ length: squares.length }, () => 0);
-    alert(`Массивы идентичны!, Время: ${solutionTime}`);
+
+    square.removeEventListener('click', () => handleClick(square, index));
+    openModalWin(solutionTime);
   };
 
   squares.forEach((square, index) => {
