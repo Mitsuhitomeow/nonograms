@@ -1,3 +1,7 @@
+import winMp3 from '/audio/win.mp3';
+
+const winAudio = new Audio(winMp3);
+
 const [modal, modalContent, closeButton] = [
   document.createElement('div'),
   document.createElement('div'),
@@ -45,6 +49,12 @@ export default function openModalWin(solutionTime) {
   subtitle.textContent = `Time to solve the task: ${solutionTime}`;
 
   modal.style.display = 'flex';
+
+  const isSound = JSON.parse(localStorage.getItem('sound'));
+
+  if (isSound === true) {
+    winAudio.play();
+  }
 }
 
 function closeModal() {

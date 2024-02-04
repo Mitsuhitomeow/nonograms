@@ -1,3 +1,11 @@
+import squareMp3 from '/audio/square.mp3';
+import crossMp3 from '/audio/cross.mp3';
+import emptyMp3 from '/audio/empty.mp3';
+
+const squareAudio = new Audio(squareMp3);
+const crossAudio = new Audio(crossMp3);
+const emptyAudio = new Audio(emptyMp3);
+
 export default class CreatePlayground {
   constructor(size, time) {
     this.ground = document.createElement('section');
@@ -65,6 +73,16 @@ export default class CreatePlayground {
             this.time.start();
           }
           if (column.innerHTML === '' && !column.classList.contains('cross')) {
+            // Добавление звуков Добавления и удаления квадратиков
+            const isSound = JSON.parse(localStorage.getItem('sound'));
+
+            if (isSound === true && !column.classList.contains('black')) {
+              squareAudio.play();
+            } else if (isSound === true && column.classList.contains('black')) {
+              emptyAudio.play();
+            }
+            // -----------
+
             column.classList.toggle('black');
           } else {
             column.classList.remove('black');
@@ -73,10 +91,19 @@ export default class CreatePlayground {
 
         elem.addEventListener('contextmenu', (event) => {
           event.preventDefault();
+          const isSound = JSON.parse(localStorage.getItem('sound'));
+
           if (!this.time.isRunning()) {
             this.time.start();
           }
           if (column.innerHTML === '' && !column.classList.contains('black')) {
+            // Добавление звуков Добавления и удаления квадратиков
+
+            if (isSound === true && !column.classList.contains('cross')) {
+              crossAudio.play();
+            }
+            // -----------
+
             elem.classList.toggle('cross');
             elem.innerHTML = `
               <svg viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
@@ -91,6 +118,9 @@ export default class CreatePlayground {
           } else {
             elem.classList.remove('cross');
             elem.innerHTML = '';
+            if (isSound === true) {
+              emptyAudio.play();
+            }
           }
         });
 
