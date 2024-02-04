@@ -1,6 +1,7 @@
 import Stopwatch from '../create-functions/classCreateStopwatch';
 import CreateOptions from './classCreateOptions';
 import createDarkMode from './createDarkmodeBtn';
+import createSound from './createSoundBtn';
 
 export default class CreateElement {
   constructor() {
@@ -33,6 +34,7 @@ export default class CreateElement {
     this.components.push(this.header);
 
     createDarkMode(div);
+    createSound(div);
   }
 
   initMain() {
