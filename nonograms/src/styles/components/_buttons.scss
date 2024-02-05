@@ -25,4 +25,9 @@
     color: #535353;
     transition: all .3s ease;
   }
+
+  .continue__btn:disabled {
+    background-color: #7c7c7c;
+    color: #6b6b6b;
+  }
 }
