@@ -25,7 +25,10 @@ export default async function createContinueGame(stopwatch) {
 
   try {
     const { time, sizeSelect, imageSelect, crosses } = data;
-    const sizeControl = document.querySelector('.main__options-select');
+    const [sizeControl, resetBtn] = [
+      document.querySelector('.main__options-select'),
+      document.querySelector('.reset__btn'),
+    ];
 
     sizeControl.value = sizeSelect;
     sizeControl.dispatchEvent(eventSize);
@@ -40,7 +43,9 @@ export default async function createContinueGame(stopwatch) {
     imageControl.value = imageSelect;
     imageControl.dispatchEvent(eventSize);
 
-    let ms = 20;
+    let ms = 0;
+
+    resetBtn.disabled = true;
     squares.forEach((element, index) => {
       const square = element;
       square.innerHTML = '';
@@ -67,6 +72,10 @@ export default async function createContinueGame(stopwatch) {
               </g>
             </svg>
           `;
+        }
+
+        if (index === squares.length - 1) {
+          resetBtn.disabled = false;
         }
       }, ms);
       ms += 20;

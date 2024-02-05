@@ -52,6 +52,8 @@ export default function createButtons(block, time) {
   buttonsBlock.className = 'main__block-buttons';
   resetBtn.classList.add('reset__btn');
   continueBtn.classList.add('continue__btn');
+  continueBtn.classList.add('reset__btn');
+  resultBtn.classList.add('result__btn');
 
   resetBtn.textContent = 'Reset';
   saveBtn.textContent = 'Save';
@@ -61,5 +63,8 @@ export default function createButtons(block, time) {
   randomBtn.textContent = 'Random Game';
 
   const isSave = JSON.parse(localStorage.getItem('saveGame'));
+  const isResults = JSON.parse(localStorage.getItem('results'));
+
   continueBtn.disabled = isSave === null;
+  resultBtn.disabled = isResults === null;
 }

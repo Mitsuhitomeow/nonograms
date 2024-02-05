@@ -41,10 +41,11 @@ export function initGame(data, time) {
 
     time.pause();
     const solutionTime = time.getTime();
-    const [sizeValueElement, imageValueElement, ground] = [
+    const [sizeValueElement, imageValueElement, ground, resultBtn] = [
       document.querySelector('.main__options-select'),
       document.querySelector('.image__section'),
       document.querySelector('.main__section-playground'),
+      document.querySelector('.result__btn'),
     ];
     const selectedValue = sizeValueElement.value;
     const selectedOption = Array.from(sizeValueElement.options).find(
@@ -58,6 +59,7 @@ export function initGame(data, time) {
     };
 
     setResults(setResult);
+    resultBtn.disabled = false;
 
     newMatrix = Array.from({ length: squares.length }, () => 0);
 

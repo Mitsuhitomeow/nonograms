@@ -1,11 +1,12 @@
 import nonograms from '../../nongrams-db.json';
 
 export default function initSolution(time) {
-  const [sizeValueElement, imageValueElement, squares, ground] = [
+  const [sizeValueElement, imageValueElement, squares, ground, resetBtn] = [
     document.querySelector('.main__options-select'),
     document.querySelector('.image__section'),
     document.querySelectorAll('.column'),
     document.querySelector('.main__section-playground'),
+    document.querySelector('.reset__btn'),
   ];
 
   ground.classList.add('block__events');
@@ -20,6 +21,7 @@ export default function initSolution(time) {
 
   let ms = 0;
 
+  resetBtn.disabled = true;
   squares.forEach((element, index) => {
     const square = element;
     time.pause();
@@ -44,6 +46,10 @@ export default function initSolution(time) {
       } else if (foundImage[index] === 1) {
         square.classList.remove('black', 'cross', 'cross_solution');
         square.classList.add('black');
+      }
+
+      if (index === squares.length - 1) {
+        resetBtn.disabled = false;
       }
     }, ms);
     ms += 20;
