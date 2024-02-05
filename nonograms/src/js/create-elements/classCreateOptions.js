@@ -4,6 +4,7 @@ import { initGame, resetGame, setMatrixData } from '../game-process/initGame';
 import createButtons from './createButtons';
 import calcSequenceForHint from '../game-process/calcHint';
 import clearHint from '../game-process/clearHint';
+import changeDarkmodePlayground from '../game-process/darkmodePlayground';
 
 export default class CreateOptions {
   constructor(time, size = 5) {
@@ -79,7 +80,14 @@ export default class CreateOptions {
       this.ground.updatePlayground(this.size);
       this.initGameOnStartAsync();
 
+      // darkmode
+      const isDarkmode = JSON.parse(localStorage.getItem('darkmode'));
+      if (isDarkmode === true) {
+        changeDarkmodePlayground();
+      }
       this.handleChanged();
+      // -------
+
       clearHint();
     });
   }
