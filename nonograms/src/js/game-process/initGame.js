@@ -41,9 +41,10 @@ export function initGame(data, time) {
 
     time.pause();
     const solutionTime = time.getTime();
-    const [sizeValueElement, imageValueElement] = [
+    const [sizeValueElement, imageValueElement, ground] = [
       document.querySelector('.main__options-select'),
       document.querySelector('.image__section'),
+      document.querySelector('.main__section-playground'),
     ];
     const selectedValue = sizeValueElement.value;
     const selectedOption = Array.from(sizeValueElement.options).find(
@@ -60,7 +61,7 @@ export function initGame(data, time) {
 
     newMatrix = Array.from({ length: squares.length }, () => 0);
 
-    square.removeEventListener('click', () => handleClick(square, index));
+    ground.classList.add('block__events');
     openModalWin(solutionTime);
   };
 
@@ -73,10 +74,13 @@ export function initGame(data, time) {
 }
 
 export function resetGame(time) {
-  const squares = document.querySelectorAll('.column');
+  const [squares, ground] = [
+    document.querySelectorAll('.column'),
+    document.querySelector('.main__section-playground'),
+  ];
+
   newMatrix = Array.from({ length: squares.length }, () => 0);
   matrix = newMatrix;
-
   squares.forEach((elem) => {
     const square = elem;
     square.classList.remove('black', 'cross', 'cross_solution');
@@ -85,6 +89,10 @@ export function resetGame(time) {
 
   time.pause();
   time.restart();
+
+  if (ground.classList.contains('block__events')) {
+    ground.classList.remove('block__events');
+  }
 }
 
 export function saveGame(time) {

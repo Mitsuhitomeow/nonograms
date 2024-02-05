@@ -26,7 +26,7 @@ export default class CreatePlayground {
     this.ground.innerHTML = '';
     this.ground.className = `main__section-playground`;
 
-    // скейлю при при маленьком размере поля
+    // добавляю классы со скейлами если размер поля мал
     const switchSize = size;
     switch (switchSize) {
       case 5:

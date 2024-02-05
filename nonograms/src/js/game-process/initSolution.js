@@ -1,9 +1,14 @@
 import nonograms from '../../nongrams-db.json';
 
 export default function initSolution(time) {
-  const sizeValueElement = document.querySelector('.main__options-select');
-  const imageValueElement = document.querySelector('.image__section');
-  const squares = document.querySelectorAll('.column');
+  const [sizeValueElement, imageValueElement, squares, ground] = [
+    document.querySelector('.main__options-select'),
+    document.querySelector('.image__section'),
+    document.querySelectorAll('.column'),
+    document.querySelector('.main__section-playground'),
+  ];
+
+  ground.classList.add('block__events');
 
   const imageValue = imageValueElement.value;
   const sizeValue = sizeValueElement.value;
@@ -18,6 +23,7 @@ export default function initSolution(time) {
   squares.forEach((element, index) => {
     const square = element;
     time.pause();
+    time.restart();
     square.innerHTML = '';
     square.classList.remove('black', 'cross', 'cross_solution');
 
