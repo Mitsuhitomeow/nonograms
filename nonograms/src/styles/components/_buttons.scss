@@ -24,10 +24,11 @@
     background-color: rgb(185, 180, 174);
     color: #535353;
     transition: all .3s ease;
-  }
 
-  .continue__btn:disabled {
-    background-color: #7c7c7c;
-    color: #6b6b6b;
+    &:disabled {
+      border: 1px solid #b1b1b1;
+      background-color: rgb(196, 194, 192);
+      color: #aaaaaa;
+    }
   }
 }

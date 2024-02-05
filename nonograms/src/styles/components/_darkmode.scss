@@ -46,7 +46,13 @@
     border: 1px solid #616161;
     background-color: #535353;
     color: #b3b3b3;
+
+    &:disabled {
+      background-color: #7c7c7c;
+      color: #6b6b6b;
+    }
   }
+
 }
 
 .darkmode__size,
@@ -55,10 +61,3 @@
   background-color: #535353;
   color: #b3b3b3;
 }
-
-// .darkmode__option_size,
-// .darkmode__option_image {
-//   border: 1px solid #616161;
-//   background-color: #535353;
-//   color: #b3b3b3;
-// }
