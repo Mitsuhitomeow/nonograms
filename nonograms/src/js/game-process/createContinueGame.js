@@ -78,7 +78,7 @@ export default async function createContinueGame(stopwatch) {
           resetBtn.disabled = false;
         }
       }, ms);
-      ms += 20;
+      ms += 10;
     });
 
     setMatrixValue(imageMatrix);

@@ -52,6 +52,6 @@ export default function initSolution(time) {
         resetBtn.disabled = false;
       }
     }, ms);
-    ms += 20;
+    ms += 10;
   });
 }
