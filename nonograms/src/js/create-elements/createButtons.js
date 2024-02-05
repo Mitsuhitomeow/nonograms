@@ -55,9 +55,9 @@ export default function createButtons(block, time) {
   continueBtn.classList.add('reset__btn');
   resultBtn.classList.add('result__btn');
 
-  resetBtn.textContent = 'Reset';
-  saveBtn.textContent = 'Save';
-  continueBtn.textContent = 'Continue';
+  resetBtn.textContent = 'Reset game';
+  saveBtn.textContent = 'Save game';
+  continueBtn.textContent = 'Continue last game';
   resultBtn.textContent = 'Results';
   solutionBtn.textContent = 'Solution';
   randomBtn.textContent = 'Random Game';
