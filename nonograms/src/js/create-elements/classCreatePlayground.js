@@ -26,6 +26,19 @@ export default class CreatePlayground {
     this.ground.innerHTML = '';
     this.ground.className = `main__section-playground`;
 
+    // скейлю при при маленьком размере поля
+    const switchSize = size;
+    switch (switchSize) {
+      case 5:
+        this.ground.classList.add('ease__scale');
+        break;
+      case 10:
+        this.ground.classList.add('medium__scale');
+        break;
+      default:
+        this.ground.classList.add('hard__scale');
+    }
+
     for (let i = 0; i < size + 1; i += 1) {
       const row = document.createElement('div');
       this.ground.append(row);

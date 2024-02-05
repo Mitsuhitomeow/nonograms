@@ -43,10 +43,10 @@ export default function openModalWin(solutionTime) {
 
   spanDiv.className = `modal__content_win`;
   title.className = `modal__title`;
-  title.textContent = `Congratulations, you WON!!!`;
+  title.textContent = `Great!`;
 
   subtitle.className = `modal__subtitle`;
-  subtitle.textContent = `Time to solve the task: ${solutionTime}`;
+  subtitle.textContent = ` You have solved the nonogram in ${solutionTime} seconds!`;
 
   modal.style.display = 'flex';
 
