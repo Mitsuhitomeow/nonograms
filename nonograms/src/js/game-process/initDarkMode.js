@@ -29,22 +29,5 @@ export default function initDarkMode() {
   // - кнопки меню
   btns.forEach((btn) => btn.classList.toggle('darkmode__buttons'));
 
-  /** TODO **********************************
-   * ИСПРАВИТЬ DARKMODE
-   *
-   * ПРИ СМЕНЕ СЕЛЕКТА И СТРИКАНЬЯ
-   * РАЗНЫХ ОПШЕНОВ И ДАРКМОДА
-   * НАЧИНАЕТСЯ ВАКХАНАЛИЯ
-   *
-   * + ПРИ НАЖАТИИ НА ЭЛЕМЕНТЫ
-   * ЧТО ДЕЛАЮТ ПЕРЕРЕНДЕР СБИВАЮТ
-   * DARKMODE
-   *
-   *
-   */
-  // - подсказки в таблице
-  // hintZero.classList.toggle('darkmode__hint');
-  //
   changeDarkmodePlayground();
-  // - селекты и опшены
 }
