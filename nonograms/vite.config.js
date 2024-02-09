@@ -11,5 +11,5 @@ export default defineConfig({
   server: {
     host: true,
   },
-  base: '/mitsuhitomeow-JSFE2023Q4/nonograms/',
+  base: '/nonograms/',
 });
